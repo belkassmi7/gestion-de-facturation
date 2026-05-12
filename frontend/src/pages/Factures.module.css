@@ -1,0 +1,109 @@
+.container {
+  padding: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-weight: bolder;
+  font-size: 25px;
+  position: relative;
+  top: 0px;
+  left: -330px;
+}
+
+/* Top Bar */
+.topBar {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.topBar input {
+  padding: 10px;
+  margin-top: 20px;
+  margin-left: 20px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  width: 350px;
+}
+
+.topBar select {
+  padding: 10px;
+  border-radius: 12px;
+  margin-top: 20px;
+  margin-left: 5px;
+
+  border: 1px solid #ccc;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Header */
+thead {
+  background: #acadb1;
+  color: white;
+}
+
+th {
+  padding: 12px;
+  text-align: left;
+}
+
+/* Body */
+td {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  border-left: 1px solid #e5e7eb;
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* Status */
+.attente {
+  color: #f59e0b;
+  font-weight: bold;
+}
+
+.retard {
+  color: #dc2626;
+  font-weight: bold;
+}
+
+.payee {
+  color: #16a34a;
+  font-weight: bold;
+}
+
+.topBar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.addBtn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+  margin-left: 170px;
+  margin-top: -105px;
+
+}
+
+.addBtn:hover {
+  background-color: #1d4ed8;
+}

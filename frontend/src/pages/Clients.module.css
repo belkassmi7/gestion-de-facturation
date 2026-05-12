@@ -1,0 +1,105 @@
+.page {
+  padding: 20px;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.addBtn {
+  position: relative;
+  top: 50px;
+  right: 230px;
+  background: rgb(128, 122, 122);
+  color: rgb(5, 5, 5);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.addBtn:hover {
+  background: #b2adad;
+}
+
+/* Search */
+.search {
+  width: 450px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  text-align: left;
+}
+
+.table thead {
+  background: #989797;
+  color: white;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #eee;
+}
+.table button{
+    margin-left: 20px;
+    position: relative;
+    left: 10px;
+    
+}
+.table th,
+.table td {
+ 
+  text-align: left;
+  border-right: 1px solid #eee;
+}
+
+/* Buttons */
+.edit {
+  background: #025813;
+  color: white;
+  border: none;
+  width:90px;
+  padding: 6px 10px ;
+  margin-left: 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  
+}
+
+.delete {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 90px;
+  
+}
+
+.noData {
+  text-align: center;
+  padding: 15px;
+  color: gray;
+}

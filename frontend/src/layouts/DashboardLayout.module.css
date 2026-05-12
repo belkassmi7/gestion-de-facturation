@@ -1,0 +1,121 @@
+:root {
+  --primary: #2563eb;
+  --sidebar-bg: #0f172a;
+  --sidebar-hover: #1e293b;
+  --bg: #f1f5f9;
+  --white: #ffffff;
+  --text: #0f172a;
+  --text-light: #64748b;
+  --border: #e2e8f0;
+}
+
+.layout {
+  display: flex;
+  height: 100vh;
+  background-color: var(--bg);
+}
+
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background: #e3e4e6; /* dark professional */
+  color: #0c0c0c;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 18px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.25);
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: 700;
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 1px;
+  margin-bottom: 20px ;
+  color: #38bdf8;
+  text-align: center;
+  border-bottom: #0a0a0a;
+}
+.border{
+  height: 1px;
+  width: 200px;
+  margin-left: 8px;
+  background: linear-gradient(to right, #000000, #1a1a1a, #000000);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* default link */
+.link {
+  font-size: 30px;
+  font-weight: bolder;
+  text-decoration: none;
+  color: #0b0b0b;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+}
+
+/* hover effect */
+.link:hover {
+  background: rgba(56, 189, 248, 0.12);
+  color: #0a0a0a;
+  transform: translateX(4px);
+  font-size: 20px;
+}
+
+/* active link */
+.active {
+  text-decoration: none;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  background: #a5a8a9;
+  color: #0f172a;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+/* optional divider */
+.nav::before {
+  content: "";
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-bottom: 15px;
+}
+/* Main */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+/* Navbar */
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 25px;
+  overflow-y: auto;
+ 
+  margin-left: 250px;
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}

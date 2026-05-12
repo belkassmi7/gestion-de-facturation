@@ -1,0 +1,23 @@
+.form {
+  text-align: center;
+}
+
+.form input {
+  display: block;
+  width: 340px;
+  margin: 10px auto;
+  padding: 17px;
+  border-radius: 15px;
+}
+.form button {
+    padding: 15px 17px;
+    border-radius: 15px;
+    width: 150px;
+    background-color: rgb(148, 145, 145);
+    color: black;
+    font-weight: bolder;
+}
+h2{
+    text-align: center;
+    margin-bottom: 30px;
+}

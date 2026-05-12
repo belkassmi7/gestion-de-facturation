@@ -1,0 +1,91 @@
+.dashboard {
+  padding: 20px;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #111;
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  color: rgb(8, 8, 8);
+  border: 1px;
+  box-shadow: 1px 1px 1px 1px rgb(130, 128, 128);
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #0f0f0f;
+}
+
+.card p {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Table */
+.tableSection {
+  margin-top: 40px;
+}
+
+.tableSection h2 {
+  margin-bottom: 10px;
+  margin-left: 40px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 5px;
+  overflow: hidden;
+ 
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  text-align: left;
+  border-right: 1px solid #eee;
+}
+
+
+.table thead {
+  background: #989797;
+  color: white;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #eee;
+  border-right: 1px solid #eee;
+}
+
+.paid {
+  color: green;
+  font-weight: bold;
+}
+
+.unpaid {
+  color: red;
+  font-weight: bold;
+}
