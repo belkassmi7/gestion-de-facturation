@@ -14,17 +14,16 @@ import AddFacture from "../pages/AddFacture";
 import Login from "../pages/Login";
 
 export const router = createBrowserRouter([
+  { path: "/login", element: <Login /> },
   {
     path: "/",
     element: <DashboardLayout />,
     children: [
       { index: true, element: <Dashboard /> },
-
-      { path: "/login", element: <Login /> },
       { path: "dashboard", element: <Dashboard /> },
       { path: "clients", element: <Clients /> },
       { path: "factures", element: <Factures /> },
-      { path:"/add-facture", element:<AddFacture />} ,
+      { path: "/add-facture", element: <AddFacture /> },
       { path: "paiements", element: <Paiements /> },
 
       // ✅ NEW ROUTES

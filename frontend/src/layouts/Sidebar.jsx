@@ -1,10 +1,14 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "../layouts/DashboardLayout.module.css";
 
-function Sidebar() {
-  const linkClass = ({ isActive }) =>
-  isActive ? styles.active : styles.link;
 
+function Sidebar() {
+  const navigate = useNavigate();
+  const linkClass = ({ isActive }) => (isActive ? styles.active : styles.link);
+
+  const handleLogOut = () => {
+    navigate("/login");
+  };
   return (
     <div className={styles.sidebar}>
       <div className={styles.logo}>R.H.C</div>
@@ -27,6 +31,7 @@ function Sidebar() {
           Paiements
         </NavLink>
       </nav>
+      <button onClick={handleLogOut} className={styles.logout}>logout</button>
     </div>
   );
 }

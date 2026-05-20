@@ -17,7 +17,7 @@
 }
 
 .form button {
-  background: #2563eb;
+  background: rgb(12, 86, 86);
   color: white;
   border: none;
   padding: 8px 15px;
@@ -39,7 +39,7 @@ td {
 }
 
 thead {
-  background:#acadb1;
+  background:rgb(12, 86, 86);
   color: white;
 }
 

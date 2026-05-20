@@ -1,17 +1,25 @@
 .container {
   height: 100vh;
-  background: linear-gradient(
-    135deg,
-    var(--color-success) 0%,
-    var(--color-accent) 68%,
-    var(--color-secondary) 100%
-  );
+  background: #dcd9d9;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+.logo{
+  position: relative;
+  top: -200px;
+  right: 300px;
+  font-size: 36px;
+color: rgb(12, 86, 86);
+text-decoration: underline;
+}
 
-form {
+.btn:hover{
+  background-color:rgb(12, 86, 86) ;
+  
+}
+
+.form {
   width: 350px;
 }
 

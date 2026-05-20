@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFactures } from "../context/FacturesContext";
+import styles from "./AddFacture.module.css";
 
 function AddFacture() {
   const navigate = useNavigate();
@@ -28,8 +29,8 @@ function AddFacture() {
     <div style={{ padding: "20px" }}>
       <h2>Ajouter Facture</h2>
 
-      <form onSubmit={handleSubmit}>
-        <select name="client_id" onChange={handleChange} required>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <select name="client_id" onChange={handleChange} className={styles.select} required>
           <option value="">Choisir client</option>
           {clients.map((c) => (
             <option key={c.id} value={c.id}>

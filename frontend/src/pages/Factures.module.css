@@ -46,8 +46,8 @@ h2 {
 }
 
 /* Header */
-thead {
-  background: #acadb1;
+.table thead {
+  background: rgb(12, 86, 86);
   color: white;
 }
 
@@ -91,7 +91,7 @@ tbody tr:hover {
 }
 
 .addBtn {
-  background-color: #2563eb;
+  background-color: rgb(12, 86, 86);
   color: white;
   border: none;
   padding: 10px 15px;

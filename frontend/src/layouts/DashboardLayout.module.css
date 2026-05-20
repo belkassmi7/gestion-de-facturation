@@ -35,7 +35,7 @@
   font-family: 'Courier New', Courier, monospace;
   letter-spacing: 1px;
   margin-bottom: 20px ;
-  color: #38bdf8;
+  color:rgb(12, 86, 86);
   text-align: center;
   border-bottom: #0a0a0a;
 }
@@ -65,10 +65,21 @@
   display: flex;
   align-items: center;
 }
+.logout{
+  position: relative;
+  bottom: -130px;
+  width: 50px;
+  left: 150px;
+  font-size: 22px;
+  background: none;
+  border: none;
+  color: red;
+  font-weight: 200;
+}
 
 /* hover effect */
 .link:hover {
-  background: rgba(56, 189, 248, 0.12);
+  background: rgb(12, 86, 86);
   color: #0a0a0a;
   transform: translateX(4px);
   font-size: 20px;
@@ -80,7 +91,7 @@
   padding: 12px 14px;
   border-radius: 10px;
   font-size: 15px;
-  background: #a5a8a9;
+  background:rgb(12, 86, 86);
   color: #0f172a;
   font-weight: 600;
   display: flex;
