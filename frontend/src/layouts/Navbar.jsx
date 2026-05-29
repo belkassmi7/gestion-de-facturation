@@ -1,6 +1,8 @@
 import styles from "./Navbar.module.css";
+import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
+  const { user } = useAuth();
     
   return (
     
@@ -8,7 +10,7 @@ function Navbar() {
       <h3>Dashboard</h3>
 
       <div>
-        <span>👤 Admin</span>
+        <span>{user?.name || "Admin"}</span>
       </div>
     </div>
   );

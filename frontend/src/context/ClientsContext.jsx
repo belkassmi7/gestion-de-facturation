@@ -1,66 +1,77 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
+import { useAuth } from "./AuthContext";
 
 const ClientsContext = createContext();
 
 export function ClientsProvider({ children }) {
+  const { apiRequest, isAuthenticated } = useAuth();
   const [clients, setClients] = useState([]);
 
-  const API = "http://127.0.0.1:8000/api/clients";
+  async function fetchClients() {
+    if (!isAuthenticated) {
+      setClients([]);
+      return;
+    }
 
-  // 📥 GET (بدل useState static)
-  const fetchClients = async () => {
-    const res = await fetch(API);
-    const data = await res.json();
-    setClients(data);
-  };
+    try {
+      const data = await apiRequest("/clients");
+      setClients(data);
+    } catch (error) {
+      console.error("Fetch clients failed:", error);
+    }
+  }
 
   useEffect(() => {
-    fetchClients();
-  }, []);
+    async function loadClients() {
+      if (!isAuthenticated) {
+        setClients([]);
+        return;
+      }
+
+      try {
+        const data = await apiRequest("/clients");
+        setClients(data);
+      } catch (error) {
+        console.error("Fetch clients failed:", error);
+      }
+    }
+
+    loadClients();
+  }, [apiRequest, isAuthenticated]);
 
   // ➕ ADD
   const addClient = async (client) => {
-    await fetch(API, {
+    await apiRequest("/clients", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: JSON.stringify(client),
     });
 
-    fetchClients(); // refresh
+    await fetchClients(); // refresh
   };
 
   // ✏️ UPDATE
   const updateClient = async (updatedClient) => {
-  if (!updatedClient.id) {
-    console.error("❌ ID missing in updateClient", updatedClient);
-    return;
-  }
+    if (!updatedClient.id) {
+      console.error("❌ ID missing in updateClient", updatedClient);
+      return;
+    }
 
-  const res = await fetch(`${API}/${updatedClient.id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-    },
-    body: JSON.stringify(updatedClient),
-  });
+    await apiRequest(`/clients/${updatedClient.id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedClient),
+    });
 
-  if (!res.ok) {
-    console.error("❌ Update failed:", await res.text());
-  }
-
-  fetchClients();
-};
+    await fetchClients();
+  };
 
   // 🗑 DELETE
   const deleteClient = async (id) => {
-    await fetch(`${API}/${id}`, {
+    await apiRequest(`/clients/${id}`, {
       method: "DELETE",
     });
 
-    fetchClients();
+    await fetchClients();
   };
 
   return (

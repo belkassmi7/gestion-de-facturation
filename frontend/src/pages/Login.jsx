@@ -1,33 +1,37 @@
 import { useState } from "react";
 import styles from "./login.module.css";
-// import { useAuth } from "../context/AuthContext";
 import { Navigate, useNavigate } from "react-router-dom";
-
-const fakeUser = {
-  email: "mohammed@gmail.com",
-  password: "12345678",
-};
+import { useAuth } from "../context/AuthContext";
 
 function Login() {
   const navigate = useNavigate();
+  const { isAuthenticated, loading, login } = useAuth();
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  if (!loading && isAuthenticated) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
     if (!form.email.trim() || !form.password.trim()) {
       setError("remplier tout les champes");
       return;
     }
 
-    if (form.email !== fakeUser.email || form.password !== fakeUser.password) {
-      setError("email or password incorrect");
-      return;
+    try {
+      setSubmitting(true);
+      await login(form);
+      navigate("/dashboard", { replace: true });
+    } catch (err) {
+      setError(err.message || "email or password incorrect");
+    } finally {
+      setSubmitting(false);
     }
-
-    navigate('/dashboard')
-
   };
 
   return (
@@ -57,7 +61,9 @@ function Login() {
             required
           />
         </div>
-        <button className={styles.btn} type="submit">Login</button>
+        <button className={styles.btn} type="submit" disabled={submitting}>
+          {submitting ? "Loading..." : "Login"}
+        </button>
       </form>
     </div>
   );

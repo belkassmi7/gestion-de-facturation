@@ -19,9 +19,9 @@ function AddFacture() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    addFacture(form);
+    await addFacture(form);
     navigate("/factures");
   };
 

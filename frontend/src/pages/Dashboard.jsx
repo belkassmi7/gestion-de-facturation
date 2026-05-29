@@ -1,36 +1,12 @@
 import styles from "./Dashboard.module.css";
-import { useEffect, useState } from "react";
+import { useClients } from "../context/ClientsContext";
+import { useFactures } from "../context/FacturesContext";
 
 
 
 export default function Dashboard() {
-  const [loading, setLoading] = useState(true);
-    const [clients, setClients] = useState([]);
-    const [factures, setFactures] = useState([]);
-
-  const API = "http://127.0.0.1:8000/api/clients";
-  const API_FACTURES = "http://127.0.0.1:8000/api/factures";
-
- useEffect(() => {
-  const loadData = async () => {
-    try {
-      const resClients = await fetch(API);
-      const dataClients = await resClients.json();
-
-      const resFactures = await fetch(API_FACTURES);
-      const dataFactures = await resFactures.json();
-
-      setClients(dataClients);
-      setFactures(dataFactures);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  loadData();
-}, []);
+  const { clients } = useClients();
+  const { factures } = useFactures();
 
 const lastFactures = [...factures]
   .sort((a, b) => new Date(b.date) - new Date(a.date)) // 🔥 newest first
@@ -46,12 +22,12 @@ const lastFactures = [...factures]
 
         <div className={styles.card}>
           <h3>Total Clients</h3>
-          <p>{loading ? "Loading..." : clients.length}</p>
+          <p>{clients.length}</p>
         </div>
 
         <div className={styles.card}>
           <h3>Total Factures</h3>
-          <p>{loading ? "Loading..." : factures.length}</p>
+          <p>{factures.length}</p>
         </div>
 
         <div className={styles.card}>

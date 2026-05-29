@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\FactureController;
 use App\Http\Controllers\Api\PaiementController;
@@ -17,12 +18,17 @@ use App\Http\Controllers\Api\PaiementController;
 |
 */
 
+Route::post('/admin/login', [AuthController::class, 'login']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::get('/admin/me', [AuthController::class, 'me']);
+    Route::post('/admin/logout', [AuthController::class, 'logout']);
+
+    Route::apiResource('clients', ClientController::class);
+    Route::apiResource('factures', FactureController::class);
+    Route::apiResource('paiements', PaiementController::class);
 });
-Route::apiResource('clients', ClientController::class);
-Route::apiResource('factures', FactureController::class);
-Route::apiResource('paiements', PaiementController::class);
-Route::get('/paiements', [PaiementController::class, 'index']);
-Route::post('/paiements', [PaiementController::class, 'store']);

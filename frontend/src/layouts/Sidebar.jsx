@@ -1,13 +1,16 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "../layouts/DashboardLayout.module.css";
+import { useAuth } from "../context/AuthContext";
 
 
 function Sidebar() {
   const navigate = useNavigate();
+  const { logout } = useAuth();
   const linkClass = ({ isActive }) => (isActive ? styles.active : styles.link);
 
-  const handleLogOut = () => {
-    navigate("/login");
+  const handleLogOut = async () => {
+    await logout();
+    navigate("/login", { replace: true });
   };
   return (
     <div className={styles.sidebar}>

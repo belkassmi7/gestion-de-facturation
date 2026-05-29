@@ -1,23 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFactures } from "../context/FacturesContext";
 import styles from "./Paiements.module.css";
-import { useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 
 function Paiements() {
- const { factures, getStats, fetchFactures } = useFactures();
+  const { factures, getStats, fetchFactures } = useFactures();
+  const { apiRequest } = useAuth();
 
-const [paiements, setPaiements] = useState([]);
-const API_PAIEMENTS = "http://127.0.0.1:8000/api/paiements";
-const API_FACTURES = "http://127.0.0.1:8000/api/factures";
-useEffect(() => {
-  const fetchPaiements = async () => {
-    const res = await fetch(API_PAIEMENTS);
-    const data = await res.json();
-    setPaiements(data);
-  };
+  const [paiements, setPaiements] = useState([]);
 
-  fetchPaiements();
-}, []);
+  async function fetchPaiements() {
+    try {
+      const data = await apiRequest("/paiements");
+      setPaiements(data);
+    } catch (error) {
+      console.error("Fetch paiements failed:", error);
+    }
+  }
+
+  useEffect(() => {
+    async function loadPaiements() {
+      try {
+        const data = await apiRequest("/paiements");
+        setPaiements(data);
+      } catch (error) {
+        console.error("Fetch paiements failed:", error);
+      }
+    }
+
+    loadPaiements();
+  }, [apiRequest]);
 
   const stats = getStats();
 
@@ -36,38 +48,31 @@ useEffect(() => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  await fetch(API_PAIEMENTS, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      facture_id: Number(form.factureId),
-      montant: Number(form.montant),
-      date: form.date,
-      mode: form.mode,
-    }),
-  });
+    await apiRequest("/paiements", {
+      method: "POST",
+      body: JSON.stringify({
+        facture_id: Number(form.factureId),
+        montant: Number(form.montant),
+        date: form.date,
+        mode: form.mode,
+      }),
+    });
 
-  // 🔄 refresh paiements
-  const res = await fetch(API_PAIEMENTS);
-  const data = await res.json();
-  setPaiements(data);
+    // 🔄 refresh paiements
+    await fetchPaiements();
 
-  setForm({
-    factureId: "",
-    montant: "",
-    date: "",
-    mode: "Cash",
-  });
- 
+    setForm({
+      factureId: "",
+      montant: "",
+      date: "",
+      mode: "Cash",
+    });
 
-// 🔥 هادي لي غادي تصلح status
-await fetchFactures();
-  
-};
+    // 🔥 هادي لي غادي تصلح status
+    await fetchFactures();
+  };
 
   return (
     <div className={styles.container}>
